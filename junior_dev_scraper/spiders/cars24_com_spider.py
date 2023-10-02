@@ -16,10 +16,10 @@ class Car24ComSpider(scrapy.Spider):
             yield {
                 'brand': products.css('h3.RZ4T7::text').get().split(' ', 1)[0],
                 'engine': products.css('ul._3ZoHn li:nth-of-type(3)::text').get(),
-                'year': ,
-                'link': ,
-                'price': ,
-                'model': ,
-                'mileage': ,
+                'year': products.css('._1i1E6::text').get().split(' |', 1)[0],
+                'link': products.attrib['href'],
+                'price': products.css('.aApXW ._7yds2::text').get().replace(',', ''),
+                'model': products.css('h3.RZ4T7::text').get().split(' ', 1)[1],
+                'mileage': products.css('ul._3ZoHn li:nth-of-type(2)::text').get().replace(',', '').replace(' km', ''),
             }
     # Good luck
